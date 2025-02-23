@@ -28,3 +28,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "巧用Gradle构建Android应用"
 include(":app")
+include(":myandroidapp")
