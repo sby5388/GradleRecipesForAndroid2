@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
+apply("param.gradle.kts")
 
 android {
     namespace = "com.shenby.grfa1"
