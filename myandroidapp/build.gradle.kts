@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 apply("param.gradle.kts")
+apply("flavors.gradle.kts")
+apply("custom.task.gradle.kts")
 
 android {
     namespace = "com.shenby.grfa1"
@@ -16,6 +18,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        val keyP1 = project.extra["p1"]
+        val keyP2 = project.extra["p2"]
+        buildConfigField("String", "PARAM_P1", "\"$keyP1\"")
+        buildConfigField("String", "PARAM_P2", "\"$keyP2\"")
+
     }
 
     buildTypes {
@@ -26,6 +35,12 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+//            applicationIdSuffix = ".debug"
+//            applicationIdSuffix = ""
+            versionNameSuffix = "-debug"
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -33,6 +48,38 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+//    flavorDimensions "attitude"
+    flavorDimensions.addAll(listOf("api", "version"))
+
+    productFlavors {
+        create("arrogant") {
+            dimension = "version"
+        }
+        create("friendly") {
+            dimension = "version"
+        }
+        create("obsequious") {
+            dimension = "version"
+        }
+        create("minApi24") {
+            // Assigns this flavor to the 'api' dimension.
+            dimension = "api"
+            minSdk = 24
+            versionNameSuffix = "-minApi24"
+        }
+        create("minApi26") {
+            dimension = "api"
+            minSdk = 26
+            versionNameSuffix = "-minApi26"
+        }
+
+    }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 

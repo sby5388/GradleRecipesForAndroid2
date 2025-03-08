@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyAndroidApp</string>
+    <string name="current_package">main</string>
 </resources>

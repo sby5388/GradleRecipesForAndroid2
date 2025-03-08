@@ -8,6 +8,27 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textViewP1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="P1=param1" />
+
+
+    <TextView
+        android:id="@+id/textViewP2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintTop_toBottomOf="@id/textViewP1"
+        tools:text="P2=param2" />
+
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
