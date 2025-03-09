@@ -94,3 +94,27 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
+tasks.register("printVariantNames") {
+//    android.applicationVariants.all {it->
+//        val type: ApplicationVariant = it
+//        println()
+//    }
+    val variants =
+        project.extensions.findByType<com.android.build.gradle.AppExtension>()?.applicationVariants
+    var count = 1
+    val set: DomainObjectSet<com.android.build.gradle.api.ApplicationVariant>? = variants
+    set?.all(object : Action<com.android.build.gradle.api.ApplicationVariant> {
+        override fun execute(t: com.android.build.gradle.api.ApplicationVariant) {
+            val variant = t
+
+            val variantName = variant.name
+            val buildType = variant.buildType.name
+            val flavor = variant.flavorName
+            println("构建渠道 序号$count 名称: $variantName, 构建类型: $buildType, 风味: $flavor")
+            count++
+        }
+    })
+
+
+}
